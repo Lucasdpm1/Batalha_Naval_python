@@ -15,7 +15,8 @@ def escolher_jogada(computador):
             return posicao
 
 def jogar_turno(computador, adversario):
-    cordenada=escolher_jogada(computador);
+    cordenada=escolher_jogada(computador)          #marcando a jogada do computador
     print(f"Computador Jogou em :{cordenada} ")
-    computador.fazer_jogada(cordenada,adversario)
+    resultado=computador.fazer_jogada(cordenada,adversario)
+    return cordenada,resultado
     

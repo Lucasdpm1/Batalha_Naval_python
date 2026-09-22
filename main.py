@@ -7,7 +7,8 @@ import computador
 import tabuleiro
 import time
 import datetime
-
+import replay
+historico=[];
 menu_atual=menu.Menu()
 menu_atual.exibir_menu()
 menu_partida=menu.Menu()
@@ -35,12 +36,12 @@ while opcao_validada==True:
                     coordenada_validada=utils.validar_posicao(coordenada)
                     if(coordenada_validada==False):
                         continue
-                    atacante.fazer_jogada(coordenada_validada,defensor)
-
+                    resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+                    historico.append((atacante.nome,coordenada_validada,resultado))
                     if(defensor.todos_afundados()==True):
-                        print(f"{atacante.nome} venceu a partida!")
+                        print(f"{atacante.nome} venceu a partida")
                         break
-
+                        
                     atacante,defensor=defensor,atacante
                 fim=time.time()
                 duracao=fim-inicio
@@ -63,13 +64,15 @@ while opcao_validada==True:
                     tabuleiro.exibir_matriz(defensor.tabuleiro)     #mostra o tabuleiro de quem vai ser atacado
 
                     if(atacante.nome=="Computador"):
-                        computador.jogar_turno(atacante,defensor)
+                        cordenada_jogada,resultado=computador.jogar_turno(atacante,defensor)
+                        historico.append((atacante.nome,cordenada_jogada,resultado))
                     else:
                         coordenada=input(f"{atacante.nome}, digite sua jogada (ex: C5): ")
                         coordenada_validada=utils.validar_posicao(coordenada)
                         if(coordenada_validada==False):
                             continue          #se a coordenada nao for valida, pede de novo sem trocar a vez
-                        atacante.fazer_jogada(coordenada_validada,defensor)
+                        resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+                        historico.append((atacante.nome,coordenada_validada,resultado))
 
                     if(defensor.todos_afundados()==True):
                         print(f"{atacante.nome} venceu a partida!")
@@ -100,7 +103,7 @@ while opcao_validada==True:
         estatisticas.exibir_estatisticas()
 
     elif(opcao==3):
-        print
+        replay.exibir_historico(historico)
     elif(opcao==4):
         print("Lucas")
     elif(opcao==5):

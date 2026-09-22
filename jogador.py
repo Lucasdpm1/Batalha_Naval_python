@@ -33,12 +33,15 @@ class Jogador():
                         afundou=navio.esta_afundado()
                         if(afundou==True):
                             print("Navio Afundado")
+                            return "Afundado"
                         else:
                             print("Apenas Acerto")
+                            return "Acerto"
 
             else:
                 adversario.tabuleiro[linha][coluna]="O"
                 print("Tiro na água")
+                return "Água"
 
 
     def todos_afundados(self):

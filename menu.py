@@ -8,3 +8,8 @@ class Menu():
         print("3.Assistir Replay:")
         print("4.Creditos:")
         print("5.Sair:")
+    def menu_partida(self):
+        print("==== Menu ====")
+        print("1.Partida 1 x 1:")
+        print("2.Partida 1 x Computador:")
+       

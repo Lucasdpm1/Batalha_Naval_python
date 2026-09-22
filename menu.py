@@ -12,4 +12,5 @@ class Menu():
         print("==== Menu ====")
         print("1.Partida 1 x 1:")
         print("2.Partida 1 x Computador:")
+        print("3.Voltar:")
        

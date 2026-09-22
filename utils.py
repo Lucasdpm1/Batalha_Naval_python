@@ -8,6 +8,16 @@ def validar_menu(resposta):
     except ValueError:
         print("Entrada Inválida digite apenas números")
         return False
+def validar_menu_partida(resposta):
+    try:        #tentando colocar a resposta do usuario em numeros interios se der errado e porque nao e numero
+        resposta=int(resposta)
+        if(resposta<1 or resposta>3):  #digitou numero mas nao entre as opcoes corretas
+            print("Opção inválida, valor tem que ser entre 1 e 3")
+            return False
+        return True
+    except ValueError:
+        print("Entrada Inválida digite apenas números")
+        return False
 
 def validar_posicao(entrada):
     entrada=entrada.strip().upper()   #colocando em maiusculo e separando os caracteres

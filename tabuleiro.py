@@ -21,3 +21,13 @@ def exibir_matriz(tabuleiro):
         else:
             print(numero," ".join(linha_visivel))
         numero=numero+1
+def exibir_matriz_propria(tabuleiro):
+    letras="A B C D E F G H I J"
+    print("   "+letras)     #cabecalho com as letras
+    numero=1
+    for linha in tabuleiro:      #mostra a matriz linha por linha
+        if(numero<10):
+            print (numero," "," ".join(linha))
+        else:
+            print(numero," ".join(linha))
+        numero=numero+1

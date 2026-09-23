@@ -36,9 +36,18 @@ while opcao_validada==True:
                 player2=input("Digite o Nome do Jogador 2: ")
                 jogador1=jogador.Jogador(player1)
                 jogador2=jogador.Jogador(player2)
-                inicio=time.time()
+        
                 atacante=jogador1
                 defensor=jogador2
+                print(f"Navios: {jogador1.nome}")
+                tabuleiro.exibir_matriz_propria(jogador1.tabuleiro);
+                pergunta=input("Aperte Qualquer Coisa Pra Continuar.")
+
+                print(f"Navios: {jogador2.nome}")
+                tabuleiro.exibir_matriz_propria(jogador2.tabuleiro);
+                pergunta2=input("Aperte Qualquer Coisa Pra Continuar.")
+
+                inicio=time.time()
                 while True:
                     tabuleiro.exibir_matriz(defensor.tabuleiro)
                     coordenada=input(f"{atacante.nome}, digite sua jogada (ex: C5): ")
@@ -70,6 +79,9 @@ while opcao_validada==True:
                 jogador2=jogador.Jogador("Computador")
                 atacante=jogador1
                 defensor=jogador2
+                print(f"Navios: {jogador1.nome}")
+                tabuleiro.exibir_matriz_propria(jogador1.tabuleiro);
+                pergunta=input("Aperte Qualquer Coisa Pra Continuar.")
                 inicio=time.time()
                 while True:
                     tabuleiro.exibir_matriz(defensor.tabuleiro)     #mostra o tabuleiro de quem vai ser atacado

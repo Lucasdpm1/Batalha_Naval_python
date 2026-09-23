@@ -8,19 +8,28 @@ import tabuleiro
 import time
 import datetime
 import replay
-historico=[];
+historico=[]
 menu_atual=menu.Menu()
 menu_atual.exibir_menu()
 menu_partida=menu.Menu()
-opcao=(input("Qual Opção Voçe Deseja: "))
-opcao_validada=utils.validar_menu(opcao)
-opcao=int(opcao)
+
+while True:
+    opcao=input("Qual Opção Voçe Deseja: ")
+    opcao_validada=utils.validar_menu(opcao)
+    if(opcao_validada==True):
+        opcao=int(opcao)
+        break
+
 while opcao_validada==True:
     if(opcao==1):
         menu_partida.menu_partida()
-        opcao_partida=input("Qual Opção Voçe Deseja: ")
-        opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
-        opcao_partida=int(opcao_partida)
+        while True:
+            opcao_partida=input("Qual Opção Voçe Deseja: ")
+            opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
+            if(opcao_partida_validada==True):
+                opcao_partida=int(opcao_partida)
+                break
+
         while opcao_partida_validada==True:
             if(opcao_partida==1):
                 player1=input("Digite o Nome do Jogador 1: ")
@@ -37,11 +46,13 @@ while opcao_validada==True:
                     if(coordenada_validada==False):
                         continue
                     resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+                    if(resultado==None):          #jogada repetida, nao consome a rodada
+                        continue
                     historico.append((atacante.nome,coordenada_validada,resultado))
                     if(defensor.todos_afundados()==True):
                         print(f"{atacante.nome} venceu a partida")
                         break
-                        
+
                     atacante,defensor=defensor,atacante
                 fim=time.time()
                 duracao=fim-inicio
@@ -72,6 +83,8 @@ while opcao_validada==True:
                         if(coordenada_validada==False):
                             continue          #se a coordenada nao for valida, pede de novo sem trocar a vez
                         resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+                        if(resultado==None):          #jogada repetida, nao consome a rodada
+                            continue
                         historico.append((atacante.nome,coordenada_validada,resultado))
 
                     if(defensor.todos_afundados()==True):
@@ -81,7 +94,7 @@ while opcao_validada==True:
                     atacante,defensor=defensor,atacante
                         #troca quem ataca e quem defende
                 fim=time.time()
-                duracao=fim-inicio;
+                duracao=fim-inicio
                 duracao=datetime.timedelta(seconds=duracao)
                 estatisticas.atualizar_dicionario(atacante.tiros_dados,True,atacante.acertos)
                 estatisticas.atualizar_dicionario(defensor.tiros_dados,True,defensor.acertos)
@@ -90,14 +103,17 @@ while opcao_validada==True:
                 print(f"Vencedor :{atacante.nome}")
                 print(f"Total Jogadas:{total_jogadas}")
                 print(f"Duração Partida: {duracao}")
-                
+
             elif(opcao_partida==3):
                 break
 
             menu_partida.menu_partida()
-            opcao_partida=input("Qual Opção Voçe Deseja: ")
-            opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
-            opcao_partida=int(opcao_partida)
+            while True:
+                opcao_partida=input("Qual Opção Voçe Deseja: ")
+                opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
+                if(opcao_partida_validada==True):
+                    opcao_partida=int(opcao_partida)
+                    break
 
     elif(opcao==2):
         estatisticas.exibir_estatisticas()
@@ -110,10 +126,11 @@ while opcao_validada==True:
         break
 
     menu_atual.exibir_menu()
-    opcao=(input("Qual Opção Voçe Deseja: "))
-    opcao_validada=utils.validar_menu(opcao)
-    opcao=int(opcao)
-
-
+    while True:
+        opcao=input("Qual Opção Voçe Deseja: ")
+        opcao_validada=utils.validar_menu(opcao)
+        if(opcao_validada==True):
+            opcao=int(opcao)
+            break
 
 print("Obrigado Por Jogar.")

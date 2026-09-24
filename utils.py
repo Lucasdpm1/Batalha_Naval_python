@@ -27,7 +27,7 @@ def validar_posicao(entrada):
     letra=entrada[0]
     numero=entrada[1:]
 
-    if not ('A'<= letra <= 'J'):                   #verificando se o usuario digitou as 10 primeiras letras do alfabeto
+    if not ('A'<= letra <= 'J'):                   #verificando se o usuario digitou algo entre as 10 primeiras letras do alfabeto
         print("A letra precisa ser entre A a J")
         return False
 
@@ -41,4 +41,4 @@ def validar_posicao(entrada):
         return False
 
     else:
-        return entrada
+        return entrada   #retornando ja validado

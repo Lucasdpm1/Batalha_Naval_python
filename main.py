@@ -67,13 +67,14 @@ while opcao_validada==True:
                     resultado=atacante.fazer_jogada(coordenada_validada,defensor)#faz a jogada no mapa do outro jogador
                     if(resultado==None):          #jogada repetida, nao consome a rodada
                         continue
+
                     historico.append((atacante.nome,coordenada_validada,resultado))#salva no historico cada jogada que deu certo
                     if(defensor.todos_afundados()==True):#verifica se todos os navios do oponente afundaram
                         print(f"{atacante.nome} venceu a partida")
                         print("\n")
                         break
-
-                    atacante,defensor=defensor,atacante
+                    if(resultado=="Água"):
+                        atacante,defensor=defensor,atacante
                 fim=time.time()#funcao pra calcular o tempo da partida total
                 duracao=fim-inicio
                 duracao=datetime.timedelta(seconds=duracao)
@@ -110,6 +111,7 @@ while opcao_validada==True:
                         if(coordenada_validada==False):
                             continue          #se a coordenada nao for valida, pede de novo sem trocar a vez
                         resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+
                         if(resultado==None):          #jogada repetida, nao consome a rodada
                             continue
                         historico.append((atacante.nome,coordenada_validada,resultado))
@@ -117,8 +119,8 @@ while opcao_validada==True:
                     if(defensor.todos_afundados()==True):
                         print(f"{atacante.nome} venceu a partida!")#mesma logica da opcao 1 , so que agora sem o jogador 2 , que é a propria maquina
                         break   #quebra o loop quando alguem perde
-
-                    atacante,defensor=defensor,atacante
+                    if(resultado=="Água"):
+                        atacante,defensor=defensor,atacante
                         #troca quem ataca e quem defende
                 fim=time.time()
                 duracao=fim-inicio

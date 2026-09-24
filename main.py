@@ -44,31 +44,31 @@ while opcao_validada==True:
                 pergunta=input("Aperte Qualquer Coisa Pra Continuar.")
 
                 print(f"Navios: {jogador2.nome}")
-                tabuleiro.exibir_matriz_propria(jogador2.tabuleiro);
+                tabuleiro.exibir_matriz_propria(jogador2.tabuleiro);#mostra a matriz propria do jogador 2
                 pergunta2=input("Aperte Qualquer Coisa Pra Continuar.")
 
                 inicio=time.time()
                 while True:
-                    tabuleiro.exibir_matriz(defensor.tabuleiro)
+                    tabuleiro.exibir_matriz(defensor.tabuleiro)  #exibi a matriz atual do adversario rodada por rodada
                     coordenada=input(f"{atacante.nome}, digite sua jogada (ex: C5): ")#valida a posicao digitada com a funcao de validacao pra cada jogada digitada em um loop
-                    coordenada_validada=utils.validar_posicao(coordenada)
+                    coordenada_validada=utils.validar_posicao(coordenada)#valida a cordenada digitada pelo usuario a cada interacao dentro do loop
                     if(coordenada_validada==False):
                         continue
-                    resultado=atacante.fazer_jogada(coordenada_validada,defensor)
+                    resultado=atacante.fazer_jogada(coordenada_validada,defensor)#faz a jogada no mapa do outro jogador
                     if(resultado==None):          #jogada repetida, nao consome a rodada
                         continue
-                    historico.append((atacante.nome,coordenada_validada,resultado))
-                    if(defensor.todos_afundados()==True):
+                    historico.append((atacante.nome,coordenada_validada,resultado))#salva no historico cada jogada que deu certo
+                    if(defensor.todos_afundados()==True):#verifica se todos os navios do oponente afundaram
                         print(f"{atacante.nome} venceu a partida")
                         break
 
                     atacante,defensor=defensor,atacante
-                fim=time.time()
+                fim=time.time()#funcao pra calcular o tempo da partida total
                 duracao=fim-inicio
                 duracao=datetime.timedelta(seconds=duracao)
                 estatisticas.atualizar_dicionario(atacante.tiros_dados,True,atacante.acertos)#atualiza o dicionario das estatisticas com os dados da partida
                 estatisticas.atualizar_dicionario(defensor.tiros_dados,True,defensor.acertos)
-                total_jogadas=atacante.tiros_dados+defensor.tiros_dados
+                total_jogadas=atacante.tiros_dados+defensor.tiros_dados#jogadas do jogador 1 + jogador 2
                 print("\n")
                 print("Fim de Jogo")
                 print(f"Vencedor :{atacante.nome}")
@@ -101,14 +101,14 @@ while opcao_validada==True:
                         historico.append((atacante.nome,coordenada_validada,resultado))
 
                     if(defensor.todos_afundados()==True):
-                        print(f"{atacante.nome} venceu a partida!")
-                        break
+                        print(f"{atacante.nome} venceu a partida!")#mesma logica da opcao 1 , so que agora sem o jogador 2 , que é a propria maquina
+                        break   #quebra o loop quando alguem perde
 
                     atacante,defensor=defensor,atacante
                         #troca quem ataca e quem defende
                 fim=time.time()
                 duracao=fim-inicio
-                duracao=datetime.timedelta(seconds=duracao)
+                duracao=datetime.timedelta(seconds=duracao)#atualiza o dicionario e mostra os status basicos apos o fim da partida
                 estatisticas.atualizar_dicionario(atacante.tiros_dados,True,atacante.acertos)
                 estatisticas.atualizar_dicionario(defensor.tiros_dados,True,defensor.acertos)
                 total_jogadas=atacante.tiros_dados+defensor.tiros_dados
@@ -135,7 +135,7 @@ while opcao_validada==True:
         replay.exibir_historico(historico) #exibe o historico como replay
     elif(opcao==4):
         print("Lucas")  #eu
-    elif(opcao==5):
+    elif(opcao==5):#encerra o programa 
         break
 
     menu_atual.exibir_menu()

@@ -59,12 +59,6 @@ Só seguir o menu e digitar o número da opção.
 - Coordenada segue o formato do enunciado: letra (A-J) + número (1-10),
   sem espaço ou separador, tipo `C5`.
 
-## O que ainda dava pra fazer
-
-- Salvar estatísticas e histórico de replay em arquivo, pra não perder
-  quando fecha o programa
-- Interface gráfica (ficou só modo texto mesmo)
-- IA do computador mais inteligente, tipo perseguir depois de acertar
 
 ## Autor
 

@@ -54,8 +54,8 @@ Só seguir o menu e digitar o número da opção.
 - Quem acerta continua jogando, só passa a vez pro outro quando dá água.
   Não é o "um tiro por rodada sempre alternando" mais tradicional, mas é
   uma variação comum do Batalha Naval e o enunciado não fecha isso.
-- O enunciado não diz quantos navios cada jogador tem, então defini 6 no
-  total: 4 pequenos e 2 grandes.
+- O enunciado não diz quantos navios cada jogador tem, então defini 7 no
+  total: 4 pequenos e 3 grandes.
 - O tabuleiro do adversário nunca mostra onde estão os navios escondidos -
   por dentro a matriz sabe onde é `"N"`, mas a função que mostra na tela
   esconde isso até ser atingido. Já a tela de conferência dos próprios

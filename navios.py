@@ -1,15 +1,15 @@
 import utils
 import random
-class Navio():
+class Navio():#classe navio
     def __init__(self,tamanho,posicoes):
-        self.tamanho=tamanho
-        self.posicoes=posicoes
-        self.atingidas=set()
+        self.tamanho=tamanho#tamanho navio
+        self.posicoes=posicoes#posicoes 
+        self.atingidas=set()#set pra nao repetir a posicao marcada igual uma lista
     def registrar_acerto(self,posicao): #registra se foi acerto ou erro a jogada
-        self.atingidas.add(posicao)
+        self.atingidas.add(posicao)#anota a posicao no atingidas
 
-    def esta_afundado(self):
-        if(len(self.atingidas)==self.tamanho):
+    def esta_afundado(self):#
+        if(len(self.atingidas)==self.tamanho):#quantidade de acertos anotados compara com o tamanho do navio pra ver se afundo ou nao
             return True
         else: #verica se foi acerto ou afunsou o navio por completo
             return False
@@ -17,7 +17,7 @@ class Navio():
 
 def calcular_posicoes(linha, coluna, orientacao, tamanho):
     lista=[]
-    for i in range(tamanho):                 #calcula as posicoes posiveis
+    for i in range(tamanho):                 #calcula as posicoes posiveis de colocar navio
         if(orientacao=="H"):
             lista.append((linha,coluna+i))
         else:
@@ -27,7 +27,7 @@ def calcular_posicoes(linha, coluna, orientacao, tamanho):
         
 
 def posicao_valida(posicoes, tabuleiro):
-    for posicao in posicoes:
+    for posicao in posicoes: #verifica a lista de posicoes posiveis pra ver da pra colocar um navio ali ou nao
         linha,coluna=posicao     #verifica se a posicao que o random marcou esta dentro da matriz e retorna true se sim
         if(linha<0 or linha>9 or coluna<0 or coluna>9):
             return False
@@ -40,11 +40,11 @@ def posicao_valida(posicoes, tabuleiro):
 def posicionar_navio(tabuleiro, tamanho):
     while True:
         l=random.randint(0,9)  #linha e coluna sorteada pra ser uma posicao do navio
-        c=random.randint(0,9)
-        orientacao=random.choice(["H","V"])
-        posicoes_possiveis=calcular_posicoes(l,c,orientacao,tamanho)
-        if(posicao_valida(posicoes_possiveis,tabuleiro)==True):
-            for posicao in posicoes_possiveis:
+        c=random.randint(0,9)#sorteia a posicao pro navio
+        orientacao=random.choice(["H","V"]) #sorteia se vai ser horizontal ou vertical 
+        posicoes_possiveis=calcular_posicoes(l,c,orientacao,tamanho)#calcula as posicoes possiveis de colocar ele com na posicao da matriz e a orientacao junto do tamanho do navio pra nao passar o tamanho da matriz e cair pra fora
+        if(posicao_valida(posicoes_possiveis,tabuleiro)==True):#passa a lista pra validar a posicao que caiu o navio e o tabuleiro que vai ser colocado
+            for posicao in posicoes_possiveis: #para cada posicao possivel anota um navio 
                 linha,coluna=posicao
                 tabuleiro[linha][coluna]="N"  #marcando navio no mapa para cada local sorteado possivel 
         

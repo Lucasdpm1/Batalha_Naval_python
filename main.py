@@ -24,7 +24,7 @@ while True:
 while opcao_validada==True:
     if(opcao==1):  #opcao de jogar chama o sub menu com as opcoes de partida
         menu_partida.menu_partida()
-        while True:
+        while True:#while pra validar opcao do menu de partida
             opcao_partida=input("Qual Opção Voçe Deseja: ")
             print("\n")
             opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
@@ -36,28 +36,28 @@ while opcao_validada==True:
             if(opcao_partida==1):  #opcao de jogar 1 contra 1 pede os nome e comeca a pedir as jogadas ate sair o vencedor
                 player1=input("Digite o Nome do Jogador 1: ")
                 print("\n")
-                player2=input("Digite o Nome do Jogador 2: ")
+                player2=input("Digite o Nome do Jogador 2: ")#nomes dos 2 jogadores
                 print("\n")
-                jogador1=jogador.Jogador(player1)
+                jogador1=jogador.Jogador(player1)#criando os objetos jogador
                 jogador2=jogador.Jogador(player2)
         
-                atacante=jogador1
+                atacante=jogador1#comeca atacando quem foi o primeiro a digitar o nome
                 defensor=jogador2
-                print(f"Navios: {jogador1.nome}")
+                print(f"Navios: {jogador1.nome}")#printa os navios do jogador 1 
                 print("\n")
                 tabuleiro.exibir_matriz_propria(jogador1.tabuleiro);  #exibi onde estao seus proprios navios antes de comecar o jogo de verdade 
                 pergunta=input("Aperte Qualquer Coisa Pra Continuar.")
                 print("\n")
 
 
-                print(f"Navios: {jogador2.nome}")
+                print(f"Navios: {jogador2.nome}")#mesma coisa jogador 2
                 tabuleiro.exibir_matriz_propria(jogador2.tabuleiro);#mostra a matriz propria do jogador 2
                 pergunta2=input("Aperte Qualquer Coisa Pra Continuar.")
                 print("\n")
 
 
-                inicio=time.time()
-                while True:
+                inicio=time.time()#calcular o tempo da partida
+                while True:#while ate acabar o jogo
                     tabuleiro.exibir_matriz(defensor.tabuleiro)  #exibi a matriz atual do adversario rodada por rodada
                     coordenada=input(f"{atacante.nome}, digite sua jogada (ex: C5): ")
                     print("\n")#valida a posicao digitada com a funcao de validacao pra cada jogada digitada em um loop
@@ -80,6 +80,7 @@ while opcao_validada==True:
                 duracao=datetime.timedelta(seconds=duracao)
                 estatisticas.atualizar_dicionario(atacante.tiros_dados,True,atacante.acertos)#atualiza o dicionario das estatisticas com os dados da partida
                 estatisticas.atualizar_dicionario(defensor.tiros_dados,True,defensor.acertos)
+                estatisticas.contar_partida() 
                 total_jogadas=atacante.tiros_dados+defensor.tiros_dados#jogadas do jogador 1 + jogador 2
                 print("\n")
                 print("Fim de Jogo")
@@ -127,6 +128,7 @@ while opcao_validada==True:
                 duracao=datetime.timedelta(seconds=duracao)#atualiza o dicionario e mostra os status basicos apos o fim da partida
                 estatisticas.atualizar_dicionario(atacante.tiros_dados,True,atacante.acertos)
                 estatisticas.atualizar_dicionario(defensor.tiros_dados,True,defensor.acertos)
+                estatisticas.contar_partida() 
                 total_jogadas=atacante.tiros_dados+defensor.tiros_dados
                 print("Fim de Jogo")
                 print(f"Vencedor :{atacante.nome}")
@@ -137,9 +139,9 @@ while opcao_validada==True:
 
             elif(opcao_partida==3):
                 break
-
+                    #saindo do laco de menu partida
             menu_partida.menu_partida()
-            while True:
+            while True:#tentando novamente pra jogar novamente apos o fim da primeira partida
                 opcao_partida=input("Qual Opção Voçe Deseja: ")
                 print("\n")
                 opcao_partida_validada=utils.validar_menu_partida(opcao_partida)
@@ -153,7 +155,7 @@ while opcao_validada==True:
     elif(opcao==3):
         replay.exibir_historico(historico) #exibe o historico como replay
     elif(opcao==4):
-        print("Lucas")  #eu
+        print("Lucas Domingos Pereira - Cefet-mg")  #eu
         print("\n")
 
     elif(opcao==5):#encerra o programa 

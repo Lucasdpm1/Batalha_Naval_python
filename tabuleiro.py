@@ -1,7 +1,7 @@
 def criando_matriz():
     linhas=10                 #criando matriz 10/10
-    colunas=10
-    tabuleiro=[["~" for _ in range(colunas)] for _ in range(linhas)] #cria a matriz 10/10 nesse for
+    colunas=10                                                            #com o tamanho de linhas e colunas que esta colocado aqui
+    tabuleiro=[["~" for i in range(colunas)] for i in range(linhas)] #cria a matriz 10/10 nesse for colocando o ~ pra representar cada casa da matriz
     return tabuleiro
 
 def exibir_matriz(tabuleiro):
@@ -17,17 +17,18 @@ def exibir_matriz(tabuleiro):
                 linha_visivel.append(casa)
 
         if numero<10:
-            print(numero," "," ".join(linha_visivel))
+            print(f" {numero} " + " ".join(linha_visivel))#juntado pra fazer a lateral da matriz
         else:
-            print(numero," ".join(linha_visivel))
+            print(f"{numero} " + " ".join(linha_visivel))
         numero=numero+1
+
 def exibir_matriz_propria(tabuleiro):
     letras="A B C D E F G H I J"
     print("   "+letras)     #cabecalho com as letras
     numero=1                                      # antes de comecar o jogo mesmo exibe sua propria matriz pra saber onde estao seus proprios barcos
     for linha in tabuleiro:      #mostra a matriz linha por linha
         if(numero<10):
-            print (numero," "," ".join(linha))
+            print(f" {numero} " + " ".join(linha))# mostra a matriz sem esconder os navios do adversario
         else:
-            print(numero," ".join(linha))
+            print(f"{numero} " + " ".join(linha))
         numero=numero+1
